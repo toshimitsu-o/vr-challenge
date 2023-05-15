@@ -20,7 +20,7 @@ public class DogScript : MonoBehaviour
     //The current state for the dog, as defiend by the enum at the top. 
     private DogState dogState;
     //This defines how close the ball needs to be to a thing for it to count as 'close'
-    private float ballClose = 0.5f;
+    private float ballClose = 2.0f;
     //A varaible to store if the ball has a rigidbody and if it is kinematic
     private bool ballKinematic = false;
     //Does the dog currently have the ball
@@ -90,52 +90,54 @@ public class DogScript : MonoBehaviour
         if (dogState == DogState.Fetching) {
         //if we don't have the ball yet, than this means we need to go and get it.
             if (hasBall == false) {
-            //check how far from the ball the dog is
-            float dist = Vector3.Distance(transform.position, ball.transform.position);
-            if (dist < ballClose) {
-                //if the dog is close to the ball, that means we need to pick it up.
-                //we set the state back to idle for the transition.
-                dogState = DogState.Idle;
-            } else {
-                //the dog is not near the ball, we need to move towards ball
-                //first we must rotate to face the ball
-                Vector3 ballPos = ball.transform.position;
-                //we can elimate vertical rotation by setting our look target to be at the same
-                // y axis value as the dog.
-                ballPos.y = transform.position.y;
-                //call lookat to point our object at the ball. 
-                transform.LookAt(ballPos);
-                //This will cause the dog ot look in the oppersite direction however 
-                //we can fix this by just turn it 180 degrees after calling lookup. 
-                transform.Rotate(new Vector3(0, 180, 0));
+                //check how far from the ball the dog is
+                float dist = Vector3.Distance(transform.position, ball.transform.position);
+                if (dist < ballClose) {
+                    //if the dog is close to the ball, that means we need to pick it up.
+                    //we set the state back to idle for the transition.
+                    dogState = DogState.Idle;
+                } else {
+                    //the dog is not near the ball, we need to move towards ball
+                    //first we must rotate to face the ball
+                    Vector3 ballPos = ball.transform.position;
+                    //we can elimate vertical rotation by setting our look target to be at the same
+                    // y axis value as the dog.
+                    ballPos.y = transform.position.y;
+                    //call lookat to point our object at the ball. 
+                    transform.LookAt(ballPos);
+                    //This will cause the dog ot look in the oppersite direction however 
+                    //we can fix this by just turn it 180 degrees after calling lookup. 
+                    transform.Rotate(new Vector3(0, 180, 0));
 
-                //we are now facing the ball, now we need to move towards it.
-                //get the vector towards the ball
-                Vector3 direction = ball.transform.position - transform.position;
-                //get rid any Y axi movement so we don't get a flying dog 
-                direction.y = 0;
-                //always normalise 
-                direction.Normalize();
-                //apply this vector to the dog's position with the time pass and movement speed. 
-                transform.Translate(direction * Time.deltaTime * speed, Space.World);
-                //lastly we need to keep our down on the ground, so we call our function at the //the bottom that will stick it to the ground.
-                StickToFloor();
-            }
+                    //we are now facing the ball, now we need to move towards it.
+                    //get the vector towards the ball
+                    Vector3 direction = ball.transform.position - transform.position;
+                    //get rid any Y axi movement so we don't get a flying dog 
+                    direction.y = 0;
+                    //always normalise 
+                    direction.Normalize();
+                    //apply this vector to the dog's position with the time pass and movement speed. 
+                    transform.Translate(direction * Time.deltaTime * speed, Space.World);
+                    //lastly we need to keep our down on the ground, so we call our function at the //the bottom that will stick it to the ground.
+                    StickToFloor();
+                }
 
             //now we handle if we have picked up the ball
             //this is similar, but instead of traveling to the ball, we travel to the player object
             } else {
                 //check how far from the player the dog is
                 float dist = Vector3.Distance(transform.position, player.transform.position);
-                if (dist < ballClose) {
+                if (dist < 4.5f) {
                     //if the dog is close to the player, that means we need to drop the ball /and we set the state back to idle, but with the timer set so it stays idle for a while.
                     idleTimer = Random.Range(3, 5);
                     dogState = DogState.Idle;
                     //here we drop the ball by setting it's parent object to mull and renabling physics it if has it.
-                    ball.transform.parent = null;
-                    if (ball.GetComponent<Rigidbody>()) {
-                        ball.GetComponent<Rigidbody>().isKinematic = ballKinematic;
-                    }
+                    // destoy ball component
+                    ball.transform.position = new Vector3(0, -10, 0);
+                    // ball.transform.parent = null;
+                    // if (ball.GetComponent<Rigidbody>()) {
+                    //     //ball.GetComponent<Rigidbody>().isKinematic = ballKinematic;
+                    // }
                     //lastly we update our flag to say we've dropped the ball 
                     hasBall = false;
                     //Lastly we handle if we have the ball but have'nt got back to the player object yet
