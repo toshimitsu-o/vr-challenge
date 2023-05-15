@@ -294,17 +294,17 @@
 -r:"/Applications/Unity/Hub/Editor/2021.3.22f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.VRModule.dll"
 -r:"/Applications/Unity/Hub/Editor/2021.3.22f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.WindModule.dll"
 -r:"/Applications/Unity/Hub/Editor/2021.3.22f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll"
--r:"/Users/toshi/Unity Projects/VRAR Workshop9 Challenge/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"/Users/toshi/Unity Projects/vr-challenge/VRChallenge/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.TextMeshPro.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.Timeline.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.VisualScripting.Core.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.VisualScripting.Flow.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/200b0aP.dag/UnityEngine.UI.ref.dll"
-"Assets/BallPush.cs"
-"Assets/CameraControl.cs"
-"Assets/DogScript.cs"
-"Assets/HitDetection.cs"
+"Assets/Scripts/BallPush.cs"
+"Assets/Scripts/CameraControl.cs"
+"Assets/Scripts/DogScript.cs"
+"Assets/Scripts/HitDetection.cs"
 -langversion:9.0
 
 /deterministic
