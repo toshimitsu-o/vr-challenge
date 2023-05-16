@@ -33,7 +33,7 @@ public class HitDetection : MonoBehaviour
         // Score reached
         if (score >= maxScore) {
             // Move flag gameobject down position y slowly
-            flag.transform.position = new Vector3(flag.transform.position.x, flag.transform.position.y - 0.01f, flag.transform.position.z);
+            flag.transform.position = new Vector3(flag.transform.position.x, flag.transform.position.y - 0.05f, flag.transform.position.z);
             //flag.transform.Translate(Vector3.down * Time.deltaTime);
             Debug.Log("You win!");
         }
