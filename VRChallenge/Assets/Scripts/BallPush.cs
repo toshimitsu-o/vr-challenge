@@ -26,6 +26,13 @@ public class BallPush : MonoBehaviour
                     // Add force to the ball to push up
                     hit.collider.attachedRigidbody.AddForce(new Vector3(0, 1, 0) * power);
                 }
+                else if (hit.collider.gameObject.CompareTag("BallGreen"))
+                {
+                    // Add force to the ball to push forward
+                    hit.collider.attachedRigidbody.AddForce(transform.forward * power);
+                    // Add force to the ball to push up
+                    hit.collider.attachedRigidbody.AddForce(new Vector3(0, 1, 0) * power);
+                }
             }
             else
             {

@@ -17,12 +17,14 @@ public class HitDetection : MonoBehaviour
     public TMP_Text scoreText;
     // Time to show score
     private float timeToShow = 5.0f;
+    // Tag name
+    public string tagName = "Ball";
 
     // Start is called before the first frame update
     void Start()
     {
         // Default text
-        scoreText.text = "Score: " + score + " (of " + maxScore + ")";
+        scoreText.text = tagName + "Score: " + score + " (of " + maxScore + ")";
     }
 
     // Update is called once per frame
@@ -38,13 +40,13 @@ public class HitDetection : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.CompareTag("Ball")) {
+        if (collider.gameObject.CompareTag(tagName)) {
             // Explosion
             Instantiate(explosionPrefab, collider.transform.position, new Quaternion());
             // Add score
             score += 1;
             // Update the score text
-            scoreText.text = "Score: " + score + " (of " + maxScore + ")";
+            scoreText.text = tagName + "Score: " + score + " (of " + maxScore + ")";
             Debug.Log("Score is " + score);
         }
     }
