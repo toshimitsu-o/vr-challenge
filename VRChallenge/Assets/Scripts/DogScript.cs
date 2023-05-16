@@ -127,7 +127,7 @@ public class DogScript : MonoBehaviour
             } else {
                 //check how far from the player the dog is
                 float dist = Vector3.Distance(transform.position, player.transform.position);
-                if (dist < 4.5f) {
+                if (dist < 4.2f) {
                     //if the dog is close to the player, that means we need to drop the ball /and we set the state back to idle, but with the timer set so it stays idle for a while.
                     idleTimer = Random.Range(3, 5);
                     dogState = DogState.Idle;

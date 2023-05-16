@@ -5,23 +5,23 @@ using TMPro;
 
 public class HitDetection : MonoBehaviour
 {
+    // Prefab for explosion
     public GameObject explosionPrefab;
-
     // Keep track of how many balls have been hit
     private int score = 0;
-    
     // Score to win
     public int maxScore = 2;
-
     // Flag object
     public GameObject flag;
-
+    // Text to output score
     public TMP_Text scoreText;
+    // Time to show score
     private float timeToShow = 5.0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Default text
         scoreText.text = "Score: " + score + " (of " + maxScore + ")";
     }
 
@@ -30,7 +30,6 @@ public class HitDetection : MonoBehaviour
     {
         // Score reached
         if (score >= maxScore) {
-            
             // Move flag gameobject down position y slowly
             flag.transform.position = new Vector3(flag.transform.position.x, flag.transform.position.y - 0.01f, flag.transform.position.z);
             //flag.transform.Translate(Vector3.down * Time.deltaTime);
@@ -44,6 +43,7 @@ public class HitDetection : MonoBehaviour
             Instantiate(explosionPrefab, collider.transform.position, new Quaternion());
             // Add score
             score += 1;
+            // Update the score text
             scoreText.text = "Score: " + score + " (of " + maxScore + ")";
             Debug.Log("Score is " + score);
         }

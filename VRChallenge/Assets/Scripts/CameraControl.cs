@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+    // Speed of movement
     public float speedMove = 20.0f;
+    // Speed of turning
     public float speedTurn = 600.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
